@@ -1,0 +1,156 @@
+{% load static %}
+
+
+
+
+<div class="offcanvas-container is-triggered offcanvas-container-reverse" id="mobile-menu"><span class="offcanvas-close"><i class="fe-icon-x"></i></span>
+        <div class="px-4 pb-4">
+          <h6>منو</h6>
+          <div class="d-flex justify-content-between pt-2">
+            {% comment %} <div class="btn-group w-100 ml-2"><a class="btn btn-secondary btn-sm btn-block" href="#"><div> {% endcomment %}
+              {% comment %} <div class="dropdown-menu" style="min-width: 150px;"><a class="dropdown-item" href="#"><img src="img/flags/fr.png" alt="French"/>French</a><a class="dropdown-item" href="#"><img src="img/flags/de.png" alt="Germany"/>Germany</a><a class="dropdown-item" href="#"><img src="img/flags/it.png" alt="Italian"/>Italian</a></div> {% endcomment %}
+            <a class="btn btn-primary btn-md center-block w-100" href="account-login.html"><i class="fe-icon-user"></i>&nbsp;ثبت‌نام</a>
+            <a class="btn btn-primary btn-md center-block w-100" href="account-register.html"><i class="fe-icon-user"></i>&nbsp;ورود</a>
+            
+          </div>
+        </div>
+        <div class="offcanvas-scrollable-area border-top" style="height:calc(100% - 235px); top: 144px;">
+          <!-- Mobile Menu-->
+          <div class="accordion mobile-menu" id="accordion-menu">
+            <!-- Home-->
+            <div class="card">
+              <div class="card-header"><a class="mobile-menu-link" href="shop-boxed-ls.html">فروشگاه</a><a class="collapsed" href="#shop-submenu" data-toggle="collapse"></a></div>
+              <div class="collapse" id="shop-submenu" data-parent="#accordion-menu">
+                <div class="card-body">
+                  <ul>
+                    <li class="dropdown-header">طرح های فروشگاه</li>
+                    <li class="dropdown-item"><a href="shop-boxed-ls.html">جعبه ای با ستون سمت چپ</a></li>
+                    <li class="dropdown-item"><a href="shop-boxed-rs.html">جعبه ای با ستون سمت راست</a></li>
+                    <li class="dropdown-item"><a href="shop-boxed-ft.html">جعبه ای با فیلتر محصولات</a></li>
+                    <li class="dropdown-item"><a href="shop-boxed-ns.html">جعبه ای بدون سایدبار</a></li>
+                    <li class="dropdown-item"><a href="shop-fw-ls.html">تمام صفحه با ستون چپ</a></li>
+                    <li class="dropdown-item"><a href="shop-fw-rs.html">تمام صفحه با ستون راست</a></li>
+                    <li class="dropdown-item"><a href="shop-fw-ft.html">تمام صفحه با فیلتر محصولات</a></li>
+                    <li class="dropdown-item"><a href="shop-fw-ns.html">تمام صفحه بدون سایدبار</a></li>
+                    <li class="dropdown-header">صفحات فروشگاه</li>
+                    <li class="dropdown-item"><a href="shop-categories.html">دسته بندی محصولات</a></li>
+                    <li class="dropdown-item"><a href="shop-single.html">">صفحه محصول</a></li>
+                    <li class="dropdown-item"><a href="cart.html">سبد خرید</a></li>
+                    <li class="dropdown-item"><a href="checkout-address.html">پرداخت - آدرس</a></li>
+                    <li class="dropdown-item"><a href="checkout-shipping.html">پرداخت - حمل و نقل</a></li>
+                    <li class="dropdown-item"><a href="checkout-payment.html">پرداخت</a></li>
+                    <li class="dropdown-item"><a href="checkout-review.html">پرداخت - مرور</a></li>
+                    <li class="dropdown-item"><a href="checkout-complete.html">پرداخت - تکمیل</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Components-->
+            <div class="card">
+              <div class="card-header"><a class="mobile-menu-link" href="components.html">عناصر صفحه</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas-footer px-4 pt-3 pb-2 text-center"><a class="social-btn sb-style-3 sb-twitter" href="#"><i class="socicon-twitter"></i></a><a class="social-btn sb-style-3 sb-facebook" href="#"><i class="socicon-facebook"></i></a><a class="social-btn sb-style-3 sb-pinterest" href="#"><i class="socicon-pinterest"></i></a><a class="social-btn sb-style-3 sb-instagram" href="#"><i class="socicon-instagram"></i></a></div>
+      </div>
+
+
+
+
+<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+<header class="navbar-wrapper navbar-sticky">
+    <div class="d-table-cell align-middle pl-md-3"><a class="navbar-brand ml-1" href="index.html"><img src="{% static 'img/logo/logo-dark.png' %}" alt="CreateX"/></a></div>
+    <div class="d-table-cell w-100 align-middle pl-md-3">
+        <div class="navbar-top d-none d-lg-flex justify-content-between align-items-center">
+        <div><a class="navbar-link ml-3" href="tel:+02111111111"><i class="fe-icon-phone"></i>۰۲۱-۱۱۱۱۱۱۱۱</a><a class="navbar-link ml-3" href="mailto:support@example.com"><i class="fe-icon-mail"></i>support@example.com</a><a class="social-btn sb-style-3 sb-twitter" href="#"><i class="socicon-twitter"></i></a><a class="social-btn sb-style-3 sb-facebook" href="#"><i class="socicon-facebook"></i></a><a class="social-btn sb-style-3 sb-pinterest" href="#"><i class="socicon-pinterest"></i></a><a class="social-btn sb-style-3 sb-instagram" href="#"><i class="socicon-instagram"></i></a></div>
+        <div>
+            <ul class="list-inline mb-0">
+            <li class="dropdown-toggle mr-2"><a class="navbar-link" href="account-login.html"><i class="fe-icon-user"></i>ورود یا ایجاد حساب کاربری</a>
+                <div class="dropdown-menu left-aligned p-3 text-center" style="min-width: 200px;">
+                <p class="text-sm opacity-70">به حساب خود وارد شوید یا ثبت نام کنید تا بتوانید کنترل کامل سفارشات خود را دریافت کنید، پاداش ها و موارد دیگر را دریافت کنید.</p><a class="btn btn-primary btn-sm btn-block" href="account-login.html">ورود</a>
+                <p class="text-sm text-muted mt-3 mb-0">مشتری جدید؟<a href='account-login.html'>ثبت نام</a></p>
+                </div>
+            </li>
+            </ul>
+        </div>
+        </div>
+        <div class="navbar justify-content-end justify-content-lg-between">
+        <!-- Search-->
+        <form class="search-box" method="get">
+            <input type="text" id="site-search" placeholder="جستجو کنید.دنبال چی هستید؟"><span class="search-close"><i class="fe-icon-x"></i></span>
+        </form>
+
+
+
+
+        <!-- Main Menu-->
+        <ul class="navbar-nav d-none d-lg-block">
+            <li class="nav-item mega-dropdown-toggle"><a class="nav-link" href="shop-boxed-ls.html">فروشگاه</a>
+                <div class="dropdown-menu mega-dropdown">
+                  <div class="d-flex">
+                    <div class="column">
+                      <div class="widget widget-custom-menu">
+                        <a href="" style="text-decoration:none;"><h4 class="widget-title">طرح های فروشگاه</h4></a>
+                        <ul>
+                          <li><a href="shop-boxed-ls.html">جعبه ای با ستون سمت چپ</a></li>
+                          <li><a href="shop-boxed-rs.html">جعبه ای با ستون سمت راست</a></li>
+                          <li><a href="shop-boxed-ft.html">جعبه ای با فیلتر محصولات</a></li>
+                          <li><a href="shop-boxed-ns.html">جعبه ای بدون سایدبار</a></li>
+                          <li><a href="shop-fw-ls.html">تمام صفحه با ستون چپ</a></li>
+                          <li><a href="shop-fw-rs.html">تمام صفحه با ستون راست</a></li>
+                          <li><a href="shop-fw-ft.html">تمام صفحه با فیلتر محصولات</a></li>
+                          <li><a href="shop-fw-ns.html">تمام صفحه بدون سایدبار</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="column">
+                      <div class="widget widget-custom-menu">
+                        <h4 class="widget-title">صفحات فروشگاه</h4>
+                        <ul>
+                          <li><a href="shop-categories.html">دسته بندی محصولات</a></li>
+                          <li><a href="shop-single.html">صفحه محصول</a></li>
+                          <li><a href="cart.html">سبد خرید</a></li>
+                          <li><a href="checkout-address.html">پرداخت - آدرس</a></li>
+                          <li><a href="checkout-shipping.html">پرداخت - حمل و نقل</a></li>
+                          <li><a href="checkout-payment.html">پرداخت</a></li>
+                          <li><a href="checkout-review.html">پرداخت - مرور</a></li>
+                          <li><a href="checkout-complete.html">پرداخت - تکمیل</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="column p-0 ml-0 mr-3" style="width: 320px;"><a class="d-block" href="shop-single.html"><img src="{% static 'img/shop/mega-menu.jpg' %}" alt="Samsung Galaxy S9"/></a></div>
+                  </div>
+                </div>
+              </li>
+            <li class="nav-item"><a class="nav-link" href="components.html">عناصر صفحه</a></li>
+        </ul>
+        <div>
+            <ul class="navbar-buttons d-inline-block align-middle mr-lg-2">
+            <li class="d-block d-lg-none"><a href="#mobile-menu" data-toggle="offcanvas"><i class="fe-icon-menu"></i></a></li>
+            <li><a href="#" data-toggle="search"><i class="fe-icon-search"></i></a></li>
+            <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fe-icon-shopping-cart"></i></a><span class="badge badge-danger">3</span></li>
+            </ul><a class="btn btn-gradient mr-3 d-none d-xl-inline-block" href="#" target="_blank">هم اکنون بخرید</a>
+        </div>
+        </div>
+    </div>
+          <!-- Off-Canvas Shopping Cart-->
+      <div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart"><span class="offcanvas-close"><i class="fe-icon-x"></i></span>
+        <div class="px-4">
+          <h6>سبد خرید شما</h6>
+          <div class="widget widget-cart pt-2"><a class="featured-product" href="shop-single.html">
+              <div class="featured-product-thumb"><img src="{% static 'img/widgets/cart/02.jpg' %}" alt="Product Image"/>
+              </div>
+              <div class="featured-product-info">
+                <h5 class="featured-product-title">Samsung Gear 360 Camera</h5><span class="featured-product-price">۴۵۳۰۰۰۰ تومان</span>
+              </div><span class="remove-product"><i class="fe-icon-x"></i></span></a><a class="featured-product" href="shop-single.html">
+              <div class="featured-product-thumb"><img src="{% static 'img/widgets/cart/03.jpg' %}" alt="Product Image"/>
+              </div>
+              <div class="featured-product-info">
+                <h5 class="featured-product-title">Edifier W855BT Bluetooth</h5><span class="featured-product-price">۴۵۳۰۰۰۰ تومان</span>
+              </div><span class="remove-product"><i class="fe-icon-x"></i></span></a>
+            <hr class="mt-3 mb-3"><span class="text-sm text-muted">قیمت کل: &nbsp;</span><strong>۱۳۵۹۰۰۰۰ تومان</strong>
+            <div class="d-flex justify-content-between pt-3"><a class="btn btn-primary btn-block btn-sm ml-2" href="cart.html">مشاهده سبد خرید</a><a class="btn btn-accent btn-block mt-0 btn-sm" href="checkout-address.html">پرداخت</a></div>
+          </div>
+        </div>
+      </div>
+</header>
