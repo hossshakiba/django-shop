@@ -3,40 +3,41 @@
 {% block content %}
 
     <div class="container mb-3 mt-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="col-md-12 text-center alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
       <div class="row justify-content-center">
           <div class="col-md-6 pb-5">
             <h3 class="h4 pb-1 mb-1"> ورود</h3>
-              <p class="text-right">حساب کاربری ندارید؟ <a href="/login"> ثبت نام کنید.</a></p>
+              <p class="text-right">حساب کاربری ندارید؟ <a href="{% url 'account:sign-up' %}"> ثبت نام کنید.</a></p>
             <form class="needs-validation" method="post" novalidate>{% csrf_token %}
               <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="reg-fn">ایمیل یا شماره موبایل</label>
-                      {% render_field form.email class="form-control" type="email" required="required" placeholder="ایمیل یا شماره موبایل خود را وارد کنید"%}
-                      {% for error in form.email.errors %}
-                        <div class="mt-2 text-danger">{{error}}</div>
-                        <p data-toast data-toast-position="topCenter" data-toast-type="danger"  data-toast-icon="fe-icon-check-circle" data-toast-message="{{error}}"></p>
-                      {% endfor %}
+                      {% render_field form.email_or_phone class="form-control" type="email" required="required" placeholder="ایمیل یا شماره موبایل خود را وارد کنید"%}
+                        {% for error in form.email_or_phone.errors %}
+                            <div class="mt-2 text-danger">{{error}}</div>
+                        {% endfor %}
                     </div>
                   </div>
+                  
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="reg-password">رمز عبور</label>
-                      {% render_field form.password1 class="form-control" type="password" required="required" id="reg-password"%}
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="reg-password-confirm">تایید رمز عبور</label>
-                      {% render_field form.password2 class="form-control" type="password" required="required" id="reg-password"%}
-                      {% for error in form.password2.errors %}
-                        <div class="mt-2 text-danger">{{error}}</div>
-                      {% endfor %}
+                      {% render_field form.password class="form-control" type="password" required="required" placeholder="رمز عبور خود را وارد کنید"%}
+                        {% for error in form.password.errors %}
+                            <div class="mt-2 text-danger">{{error}}</div>
+                        {% endfor %}
                     </div>
                   </div>
                 </div>
               <div class="text-left">
-                <button class="btn btn-primary" type="submit">ثبت نام</button>
+                <button class="btn btn-primary" type="submit">ورود</button>
               </div >
             </form>
           </div>

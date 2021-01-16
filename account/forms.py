@@ -38,3 +38,8 @@ class SignupForm(forms.ModelForm):
             raise forms.ValidationError('حداقل طول رمز عبور ۶ است.')
         return cd
 
+class LoginForm(forms.Form):
+    email_or_phone  = forms.CharField(required=True)
+    password        = forms.CharField(widget= forms.PasswordInput(), required=True)
+    
+
