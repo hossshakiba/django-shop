@@ -5,7 +5,6 @@ from django.contrib.auth import login, logout, authenticate
 from .forms import SignupForm, LoginForm
 from django.contrib import messages
 from django.views.generic import (
-    View,
     ListView,
 	CreateView,
 	UpdateView,
@@ -17,18 +16,20 @@ class Register(CreateView):
 	form_class 		= SignupForm
 	template_name 	= "account/signup.html"
 	success_url		= reverse_lazy('account:login')
-	
+
 	def get(self, request):
 		if request.user.is_authenticated:
 			return redirect('/')
 		return super().get(request)
 
 	def form_valid(self, form):
-		form.save()
+		user = form.save(commit=False)
+		user.set_password(form.cleaned_data['password1'])
+		user.save()
 		return super().form_valid(form)
 
 
-def login_view(request):
+def login(request):
 	if request.user.is_authenticated:
 		return redirect('/')
 	
@@ -44,5 +45,10 @@ def login_view(request):
 			return redirect('/')
 		else:
 			messages.error(request, 'کاربری با مشخصات وارد شده یافت نشد!')
-	LoginForm()
+
 	return render(request, "account/login.html", {'form':form})
+
+
+def logout(request):
+    logout(request)
+    return redirect('/login')
