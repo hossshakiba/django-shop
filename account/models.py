@@ -42,9 +42,9 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
 
     username = None
-    email   = models.EmailField(max_length=254, unique=True, verbose_name='ایمیل')
-    phone   = models.CharField(max_length=11, unique=True, verbose_name='شماره موبایل')
-    avatar  = models.ImageField(upload_to='avatar', blank=True, default="img/defaultavatar.png", verbose_name='تصویر پروفایل')
+    email    = models.EmailField(max_length=254, unique=True, verbose_name='ایمیل')
+    phone    = models.CharField(max_length=11, unique=True, verbose_name='شماره موبایل')
+    avatar   = models.ImageField(upload_to='avatar', blank=True, default="img/defaultavatar.png", verbose_name='تصویر پروفایل')
 
 
     objects = UserManager()

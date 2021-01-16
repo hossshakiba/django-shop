@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
 
     # Third party
-
+    'widget_tweaks',
 
     # Local
     'account',
