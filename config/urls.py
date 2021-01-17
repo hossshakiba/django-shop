@@ -21,7 +21,7 @@ from decouple import config
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="homepage.html"), name='home'),
-    path('', include('account.urls'))
+    path('', include('account.urls')),
 ]
 
 

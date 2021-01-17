@@ -9,12 +9,11 @@ from django.views.generic import (
 	CreateView,
 	UpdateView,
 	DeleteView)
-from django.contrib.auth.views import LoginView
 from .models import User
 
 class Register(CreateView):
 	form_class 		= SignupForm
-	template_name 	= "account/signup.html"
+	template_name 	= "registration/signup.html"
 	success_url		= reverse_lazy('account:login')
 
 	def get(self, request):
@@ -29,7 +28,7 @@ class Register(CreateView):
 		return super().form_valid(form)
 
 
-def login(request):
+def login_view(request):
 	if request.user.is_authenticated:
 		return redirect('/')
 	
@@ -46,9 +45,9 @@ def login(request):
 		else:
 			messages.error(request, 'کاربری با مشخصات وارد شده یافت نشد!')
 
-	return render(request, "account/login.html", {'form':form})
+	return render(request, "registration/login.html", {'form':form})
 
 
-def logout(request):
+def logout_view(request):
     logout(request)
     return redirect('/login')

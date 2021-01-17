@@ -7,10 +7,8 @@
         <div class="px-4 pb-4">
           <h6>منو</h6>
           <div class="d-flex justify-content-between pt-2">
-            {% comment %} <div class="btn-group w-100 ml-2"><a class="btn btn-secondary btn-sm btn-block" href="#"><div> {% endcomment %}
-              {% comment %} <div class="dropdown-menu" style="min-width: 150px;"><a class="dropdown-item" href="#"><img src="img/flags/fr.png" alt="French"/>French</a><a class="dropdown-item" href="#"><img src="img/flags/de.png" alt="Germany"/>Germany</a><a class="dropdown-item" href="#"><img src="img/flags/it.png" alt="Italian"/>Italian</a></div> {% endcomment %}
-            <a class="btn btn-primary btn-md center-block w-100" href="account-login.html"><i class="fe-icon-user"></i>&nbsp;ثبت‌نام</a>
-            <a class="btn btn-primary btn-md center-block w-100" href="account-register.html"><i class="fe-icon-user"></i>&nbsp;ورود</a>
+            <a class="btn btn-primary btn-md center-block w-100" href="{% url 'account:sign-up' %}"><i class="fe-icon-user"></i>&nbsp;ثبت‌نام</a>
+            <a class="btn btn-primary btn-md center-block w-100" href="{% url 'account:login' %}"><i class="fe-icon-user"></i>&nbsp;ورود</a>
             
           </div>
         </div>
@@ -65,12 +63,20 @@
         <div><a class="navbar-link ml-3" href="tel:+02111111111"><i class="fe-icon-phone"></i>۰۲۱-۱۱۱۱۱۱۱۱</a><a class="navbar-link ml-3" href="mailto:support@example.com"><i class="fe-icon-mail"></i>support@example.com</a><a class="social-btn sb-style-3 sb-twitter" href="#"><i class="socicon-twitter"></i></a><a class="social-btn sb-style-3 sb-facebook" href="#"><i class="socicon-facebook"></i></a><a class="social-btn sb-style-3 sb-pinterest" href="#"><i class="socicon-pinterest"></i></a><a class="social-btn sb-style-3 sb-instagram" href="#"><i class="socicon-instagram"></i></a></div>
         <div>
             <ul class="list-inline mb-0">
-            <li class="dropdown-toggle mr-2"><a class="navbar-link" href="account-login.html"><i class="fe-icon-user"></i>ورود یا ایجاد حساب کاربری</a>
+            {% if request.user.is_authenticated %}
+              <li class="dropdown-toggle mr-2"><a class="navbar-link" ><i class="fe-icon-user"></i>پروفایل</a>
+                  <div class="dropdown-menu left-aligned p-3 text-center" style="min-width: 200px;">
+                    <a class="btn btn-primary btn-sm btn-block" href="{% url 'account:logout' %}">خروج</a>
+                  </div>
+              </li>
+            {% else %}
+              <li class="dropdown-toggle mr-2"><a class="navbar-link" ><i class="fe-icon-user"></i></a>
                 <div class="dropdown-menu left-aligned p-3 text-center" style="min-width: 200px;">
-                <p class="text-sm opacity-70">به حساب خود وارد شوید یا ثبت نام کنید تا بتوانید کنترل کامل سفارشات خود را دریافت کنید، پاداش ها و موارد دیگر را دریافت کنید.</p><a class="btn btn-primary btn-sm btn-block" href="account-login.html">ورود</a>
-                <p class="text-sm text-muted mt-3 mb-0">مشتری جدید؟<a href='account-login.html'>ثبت نام</a></p>
+                  <p class="text-sm opacity-70">به حساب خود وارد شوید یا ثبت نام کنید تا بتوانید کنترل کامل سفارشات خود را دریافت کنید، پاداش ها و موارد دیگر را دریافت کنید.</p><a class="btn btn-primary btn-sm btn-block" href="{% url 'account:login' %}">ورود</a>
+                  <p class="text-sm text-muted mt-3 mb-0">مشتری جدید؟<a href="{% url 'account:sign-up' %}"> ثبت نام </a></p>
                 </div>
             </li>
+            {% endif %}
             </ul>
         </div>
         </div>
