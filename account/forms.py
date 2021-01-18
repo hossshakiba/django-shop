@@ -43,3 +43,12 @@ class LoginForm(forms.Form):
     password        = forms.CharField(widget= forms.PasswordInput(), required=True)
     
 
+class PersonalInfoForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("email", "phone", "first_name", "last_name", "avatar")
+        
+
+        widgets = {
+            'avatar': forms.FileInput()
+        }

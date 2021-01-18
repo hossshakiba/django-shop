@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load thumbnail %}
+
+{% url 'account:profile' as profile_url %}
+
+
+{% block content %}
+      <!-- Page Title-->
+      <div class="page-title d-flex" aria-label="Page title" style="background-image: url({% static 'img/page-title/shop-pattern.jpg' %});">
+        <div class="container text-right align-self-center">
+          <h1 class="page-title-heading">تنظیمات حساب کاربری</h1>
+        </div>
+      </div>
+      <!-- Page Content-->
+    <div class="container mb-4">
+        <div class="row">
+          <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+              <div class="author-card-cover" style="background-image: url({% static 'img/widgets/author/cover.jpg' %});"><a class="btn btn-light btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="در حال حاضر ۲۹۰ امتیاز اضافی برای خرج کردن دارید"><i class="fe-icon-award text-md"></i>&nbsp;۲۹۰ امتیاز</a></div>
+              <div class="author-card-profile">
+                
+                <div class="author-card-avatar"><img src="{% thumbnail request.user.avatar 100x100 crop quality=100 %}" alt="{{request.user.avatar}}"></div>
+                
+                <div class="author-card-details">
+                  <h5 class="author-card-name text-lg">{% if request.user.get_full_name %}{{request.user.get_full_name}} {% else %} نام و نام‌خانوادگی ثبت نشده{% endif %}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="wizard">
+              <nav class="list-group list-group-flush">
+                    <a class="list-group-item {% if request.path == profile_url %}active{% endif %}" href="{{ profile_url }}">
+                    <i class="fe-icon-user text-muted"></i>تنظیمات پروفایل</a>
+                    
+                    <a class="list-group-item" href="account-orders.html">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><i class="fe-icon-shopping-bag ml-1 text-muted"></i>
+                        <div class="d-inline-block font-weight-medium text-uppercase">لیست سفارشات</div>
+                        </div><span class="badge badge-secondary">۶</span></div>
+                    </a>
+                    
+                    <a class="list-group-item" href="account-address.html"><i class="fe-icon-map-pin text-muted"></i>آدرس</a>
+                    
+                    <a class="list-group-item" href="account-wishlist.html">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><i class="fe-icon-heart ml-1 text-muted"></i>
+                        <div class="d-inline-block font-weight-medium text-uppercase">علاقه مندی های من</div>
+                        </div><span class="badge badge-secondary">۳</span>
+                    </div>
+                    </a>
+                    
+                    <a class="list-group-item" href="account-tickets.html">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><i class="fe-icon-tag ml-1 text-muted"></i>
+                        <div class="d-inline-block font-weight-medium text-uppercase">تیکت های من</div>
+                        </div><span class="badge badge-secondary">۴</span>
+                    </div>
+                    </a>
+                </nav>
+            </div>
+          </div>
+          <!-- Profile Settings-->
+          <div class="col-lg-8 pb-5">
+            <form class="row" method="post" enctype="multipart/form-data"> {% csrf_token %}
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="account-fn">نام</label>
+                  {% render_field form.first_name class="form-control" type="text" id="account-fn" %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="account-ln">نام خانوادگی</label>
+                  {% render_field form.last_name class="form-control" type="text" id="account-ln" %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="account-email">آدرس ایمیل</label>
+                  {% render_field form.email class="form-control" type="email" id="account-email" required="required" %}
+                    {% for error in form.email.errors %}
+                        <div class="mt-2 text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="account-phone">شماره تلفن</label>
+                  {% render_field form.phone class="form-control" required="required" %}
+                  {% for error in form.phone.errors %}
+                        <div class="mt-2 text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="account-avatar"> تصویر پروفایل</label>
+                  <div>
+                    {% render_field form.avatar class="form-control" %}
+                    {% comment %} <input type="file" id="myfile" name="{{request.user.avatar}}" value="{{form.avatar}}"> {% endcomment %}
+                  </div>
+                  {% for error in form.avatar.errors %}
+                        <div class="mt-2 text-danger">{{error}}</div>
+                    {% endfor %}
+                </div>
+              </div>
+              <div class="col-12">
+                <hr class="mt-2 mb-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                  <div class="custom-control custom-checkbox d-block">
+                  </div>
+                  <button class="btn btn-primary" type="submit" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="موفق!" data-toast-message="اطلاعات شما با موفقیت به روز شد.">بروزرسانی پروفایل</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endblock content %}

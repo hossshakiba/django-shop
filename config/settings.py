@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Third party
     'widget_tweaks',
+    'easy_thumbnails',
 
     # Local
     'account',

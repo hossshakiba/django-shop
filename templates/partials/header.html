@@ -64,9 +64,10 @@
         <div>
             <ul class="list-inline mb-0">
             {% if request.user.is_authenticated %}
-              <li class="dropdown-toggle mr-2"><a class="navbar-link" ><i class="fe-icon-user"></i>پروفایل</a>
+              <li class="dropdown-toggle mr-2"><a class="navbar-link" ><i class="fe-icon-user"></i>حساب کاربری</a>
                   <div class="dropdown-menu left-aligned p-3 text-center" style="min-width: 200px;">
-                    <a class="btn btn-primary btn-sm btn-block" href="{% url 'account:logout' %}">خروج</a>
+                    <a class="btn btn-primary btn-sm btn-block" href="{% url 'account:profile' %}">ورود به حساب کاربری</a>
+                    <a class="btn btn-primary btn-sm btn-block" href="{% url 'account:logout' %}">خروج از حساب کاربری</a>
                   </div>
               </li>
             {% else %}
