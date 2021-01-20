@@ -3,8 +3,6 @@
 {% load widget_tweaks %}
 {% load thumbnail %}
 
-{% url 'account:profile' as profile_url %}
-
 
 {% block content %}
       <!-- Page Title-->
@@ -25,13 +23,13 @@
                 <div class="author-card-avatar"><img src="{% thumbnail request.user.avatar 100x100 crop='smart' quality=100 %}" alt="{{request.user.avatar}}"></div>
                 
                 <div class="author-card-details">
-                  <h5 class="author-card-name text-lg">{% if request.user.get_full_name %}{{request.user.get_full_name}} {% else %} نام و نام‌خانوادگی ثبت نشده{% endif %}</h5>
+                  <h5 class="author-card-name text-lg">{% if request.user.get_full_name %}{{request.user.get_full_name}} {% else %}نام و نام ‌خانوادگی{% endif %}</h5>
                 </div>
               </div>
             </div>
             <div class="wizard">
               <nav class="list-group list-group-flush">
-                    <a class="list-group-item {% if request.path == profile_url %}active{% endif %}" href="{{ profile_url }}">
+                    <a class="list-group-item {% if request.path == '/profile' %}active{% endif %}" href="{{ profile_url }}">
                     <i class="fe-icon-user text-muted"></i>تنظیمات پروفایل</a>
                     
                     <a class="list-group-item" href="account-orders.html">
@@ -99,7 +97,6 @@
                   <label for="account-avatar"> تصویر پروفایل</label>
                   <div>
                     {% render_field form.avatar class="form-control" %}
-                    {% comment %} <input type="file" id="myfile" name="{{request.user.avatar}}" value="{{form.avatar}}"> {% endcomment %}
                   </div>
                   {% for error in form.avatar.errors %}
                         <div class="mt-2 text-danger">{{error}}</div>

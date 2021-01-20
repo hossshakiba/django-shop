@@ -13,7 +13,6 @@ db.sqlite3-journal
 env
 venv
 db.sqlite
-media
 .DS_Store
 .vscode
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
