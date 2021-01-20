@@ -2,6 +2,7 @@ import re
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from .forms import SignupForm, LoginForm, PersonalInfoForm
 from django.contrib import messages
@@ -49,7 +50,7 @@ def login_view(request):
 
 	return render(request, "registration/login.html", {'form':form})
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('/login')
@@ -60,10 +61,6 @@ class ProfilePersonalInfo(LoginRequiredMixin, UpdateView, DetailView):
 	form_class 	  	= PersonalInfoForm
 	template_name 	= "registration/profile_personal_info.html"
 	success_url   	= reverse_lazy("account:profile")
-
-	def form_valid(self, form):
-		form.save()
-		return super().form_valid(form)
 
 	def get_object(self):
 		return self.request.user

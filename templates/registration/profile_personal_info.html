@@ -49,11 +49,11 @@
                     </div>
                     </a>
                     
-                    <a class="list-group-item" href="account-tickets.html">
+                    <a class="list-group-item {% if request.path == '/reset_password' %}active{% endif %}" href="{% url 'account:password_change' %}" >
                     <div class="d-flex justify-content-between align-items-center">
-                        <div><i class="fe-icon-tag ml-1 text-muted"></i>
-                        <div class="d-inline-block font-weight-medium text-uppercase">تیکت های من</div>
-                        </div><span class="badge badge-secondary">۴</span>
+                        <div><i class="fe-icon-lock ml-1 text-muted"></i>
+                        <div class="d-inline-block font-weight-medium text-uppercase">تغییر رمز عبور</div>
+                        </div>
                     </div>
                     </a>
                 </nav>
