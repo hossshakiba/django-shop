@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Local
     'account',
+    'django_cleanup.apps.CleanupConfig', # should be placed last
 ]
 
 AUTH_USER_MODEL = 'account.User'

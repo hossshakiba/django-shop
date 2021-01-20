@@ -22,7 +22,7 @@
               <div class="author-card-cover" style="background-image: url({% static 'img/widgets/author/cover.jpg' %});"><a class="btn btn-light btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="در حال حاضر ۲۹۰ امتیاز اضافی برای خرج کردن دارید"><i class="fe-icon-award text-md"></i>&nbsp;۲۹۰ امتیاز</a></div>
               <div class="author-card-profile">
                 
-                <div class="author-card-avatar"><img src="{% thumbnail request.user.avatar 100x100 crop quality=100 %}" alt="{{request.user.avatar}}"></div>
+                <div class="author-card-avatar"><img src="{% thumbnail request.user.avatar 100x100 crop='smart' quality=100 %}" alt="{{request.user.avatar}}"></div>
                 
                 <div class="author-card-details">
                   <h5 class="author-card-name text-lg">{% if request.user.get_full_name %}{{request.user.get_full_name}} {% else %} نام و نام‌خانوادگی ثبت نشده{% endif %}</h5>
