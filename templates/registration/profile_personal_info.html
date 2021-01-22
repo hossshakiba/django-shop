@@ -49,7 +49,7 @@
                     </div>
                     </a>
                     
-                    <a class="list-group-item {% if request.path == '/reset_password' %}active{% endif %}" href="{% url 'account:password_change' %}" >
+                    <a class="list-group-item" href="{% url 'account:password_change' %}" >
                     <div class="d-flex justify-content-between align-items-center">
                         <div><i class="fe-icon-lock ml-1 text-muted"></i>
                         <div class="d-inline-block font-weight-medium text-uppercase">تغییر رمز عبور</div>
@@ -108,7 +108,7 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center">
                   <div class="custom-control custom-checkbox d-block">
                   </div>
-                  <button class="btn btn-primary" type="submit" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="موفق!" data-toast-message="اطلاعات شما با موفقیت به روز شد.">بروزرسانی پروفایل</button>
+                  <button class="btn btn-primary" type="submit" >بروزرسانی پروفایل</button>
                 </div>
               </div>
             </form>

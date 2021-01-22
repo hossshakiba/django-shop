@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
 
     # Local
-    'account',
+    'account.apps.AccountConfig',
     'django_cleanup.apps.CleanupConfig', # should be placed last
 ]
 

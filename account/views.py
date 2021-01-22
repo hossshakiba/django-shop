@@ -1,18 +1,15 @@
-import re
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from django.views.generic.detail import DetailView
-from .forms import SignupForm, LoginForm, PersonalInfoForm
-from django.contrib import messages
-from django.views.generic import (
-    ListView,
-	CreateView,
-	UpdateView,
-	DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import (
+	DetailView,
+	CreateView,
+	UpdateView )
 from .models import User
+from .forms import SignupForm, PersonalInfoForm
 
 class Register(CreateView):
 	form_class 		= SignupForm
@@ -30,25 +27,12 @@ class Register(CreateView):
 		user.save()
 		return super().form_valid(form)
 
+class Login(LoginView):
+	template_name 	= "registration/login.html"
 
-def login_view(request):
-	if request.user.is_authenticated:
-		return redirect('/')
-	
-	form = LoginForm(request.POST or None)
-	if form.is_valid():
-		cd = form.cleaned_data
-		try:
-			user = authenticate(request, email=User.objects.get(phone=cd['email_or_phone']), password=cd['password'])
-		except:
-			user = authenticate(request, email=cd['email_or_phone'], password=cd['password'])
-		if user is not None:
-			login(request, user)
-			return redirect('/')
-		else:
-			messages.error(request, 'کاربری با مشخصات وارد شده یافت نشد!')
+	def get_success_url(self):
+		return reverse_lazy('home')
 
-	return render(request, "registration/login.html", {'form':form})
 
 @login_required
 def logout_view(request):

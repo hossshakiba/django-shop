@@ -1,12 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
-
-
-
 from django.contrib.auth.base_user import BaseUserManager
-
-
+from django.core.exceptions import ValidationError
+import re
 class UserManager(BaseUserManager):
     """
     Custom user model manager where email is the unique identifiers
@@ -39,11 +36,18 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
+
+def validate_phone(value):
+    if not bool(re.match('(09\d{9})', value)) or len(value) != 11:
+        raise ValidationError('شماره موبایل وارد شده غیر مجاز است.')
+    return value
+
+
 class User(AbstractUser):
 
     username = None
     email    = models.EmailField(max_length=254, unique=True, verbose_name='ایمیل')
-    phone    = models.CharField(max_length=11, unique=True, verbose_name='شماره موبایل')
+    phone    = models.CharField(max_length=11, unique=True, validators=[validate_phone], verbose_name='شماره موبایل')
     avatar   = models.ImageField(upload_to='avatar', blank=True, default="defaultavatar.png", verbose_name='تصویر پروفایل')
 
 

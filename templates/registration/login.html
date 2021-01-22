@@ -19,8 +19,8 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="reg-fn">ایمیل یا شماره موبایل</label>
-                      {% render_field form.email_or_phone class="form-control" type="email" required="required" placeholder="ایمیل یا شماره موبایل خود را وارد کنید"%}
-                        {% for error in form.email_or_phone.errors %}
+                      {% render_field form.username class="form-control" type="email" required="required" placeholder="ایمیل یا شماره موبایل خود را وارد کنید"%}
+                        {% for error in form.username.errors %}
                             <div class="mt-2 text-danger">{{error}}</div>
                         {% endfor %}
                     </div>
