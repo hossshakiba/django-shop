@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
     # Local
     'django_shop.account.apps.AccountConfig',
-    # 'django_shop.accounts.apps.AccountsConfig',
+    'django_shop.products.apps.ProductsConfig'
 
     'django_cleanup.apps.CleanupConfig', # should be placed last
 ]
