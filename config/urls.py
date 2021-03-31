@@ -16,17 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from decouple import config
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="homepage.html"), name='home'),
-    path('', include('account.urls')),
-]
+    path('', include('django_shop.account.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
-if config("DEBUG", cast=bool):
-	from django.conf import settings
-	from django.conf.urls.static import static
-
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

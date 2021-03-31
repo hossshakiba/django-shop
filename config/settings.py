@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 import os
-from decouple import config
+from pathlib import Path
+
 from django.urls import reverse_lazy
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +34,8 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = reverse_lazy('account:login')
 LOGOUT_URL = reverse_lazy('account:logout')
+AUTH_USER_MODEL = 'account.User'
+
 
 # Application definition
 
@@ -49,11 +53,12 @@ INSTALLED_APPS = [
     'easy_thumbnails',
 
     # Local
-    'account.apps.AccountConfig',
+    'django_shop.account.apps.AccountConfig',
+    # 'django_shop.accounts.apps.AccountsConfig',
+
     'django_cleanup.apps.CleanupConfig', # should be placed last
 ]
 
-AUTH_USER_MODEL = 'account.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,7 +75,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR / "django_shop", 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.PhoneAuthBackend',
+    'django_shop.account.authentication.PhoneAuthBackend',
 ]
 
 # Internationalization
@@ -139,13 +144,13 @@ STATIC_URL = '/static/'
 
 if config("DEBUG", cast=bool):
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "assets"),
+        os.path.join(BASE_DIR / "django_shop", "assets"),
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR / "django_shop", 'media')
 
 
 
