@@ -47,15 +47,15 @@ def validate_phone(value):
 
 
 class User(AbstractUser):
-
+    """
+    Custom User model. Email & Phone as identifier
+    """
     username = None
-    email    = models.EmailField(max_length=254, unique=True, verbose_name='ایمیل')
-    phone    = models.CharField(max_length=11, unique=True, validators=[validate_phone], verbose_name='شماره موبایل')
-    avatar   = models.ImageField(upload_to='avatar', blank=True, default="defaultavatar.png", verbose_name='تصویر پروفایل')
-
+    email = models.EmailField('ایمیل', max_length=254, unique=True)
+    phone = models.CharField('شماره موبایل', max_length=11, unique=True, validators=[validate_phone])
+    avatar = models.ImageField('تصویر پروفایل', upload_to='avatar', blank=True, default="defaultavatar.png")
 
     objects = UserManager()
-
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone']

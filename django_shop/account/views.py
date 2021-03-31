@@ -15,9 +15,12 @@ from .forms import SignupForm, PersonalInfoForm
 
 
 class Register(CreateView):
-	form_class 		= SignupForm
-	template_name 	= "registration/signup.html"
-	success_url		= reverse_lazy('account:login')
+	"""
+	User registration view
+	"""
+	form_class = SignupForm
+	template_name = "registration/signup.html"
+	success_url = reverse_lazy('account:login')
 
 	def get(self, request):
 		"""Redirects user to homepage if is authenticated"""
@@ -26,6 +29,7 @@ class Register(CreateView):
 		return super().get(request)
 
 	def form_valid(self, form):
+		"""Create a new user"""
 		user = form.save(commit=False)
 		user.set_password(form.cleaned_data['password1'])
 		user.save()
@@ -33,13 +37,16 @@ class Register(CreateView):
 
 
 class Login(LoginView):
-	template_name 	= "registration/login.html"
+	"""
+	User login view with email/phone
+	"""
+	template_name = "registration/login.html"
 
 	def get_success_url(self):
 		return reverse_lazy('home')
 
 	def form_invalid(self, form):
-		"""Returns a message if credintials are invalid"""
+		"""Returns a message if credentials are invalid"""
 		messages.add_message(self.request, messages.ERROR, 'کاربری با مشخصات وارد شده یافت نشد!')
 		return super().form_invalid(form)
 
@@ -51,11 +58,13 @@ def logout_view(request):
 
 
 class ProfilePersonalInfo(LoginRequiredMixin, UpdateView, DetailView):
-	"""User's profile page"""
-	model 			= User
-	form_class 	  	= PersonalInfoForm
-	template_name 	= "registration/profile_personal_info.html"
-	success_url   	= reverse_lazy("account:profile")
+	"""
+	User's profile page
+	"""
+	model = User
+	form_class = PersonalInfoForm
+	template_name = "registration/profile_personal_info.html"
+	success_url = reverse_lazy("account:profile")
 
 	def get_object(self):
 		return self.request.user
