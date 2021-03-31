@@ -59,7 +59,7 @@ def logout_view(request):
 
 class ProfilePersonalInfo(LoginRequiredMixin, UpdateView, DetailView):
 	"""
-	User's profile page
+	User's profile page. Edit personal info
 	"""
 	model = User
 	form_class = PersonalInfoForm
