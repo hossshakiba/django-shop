@@ -13,6 +13,20 @@ class Product(models.Model):
     is_active = models.BooleanField('فعال/غیرفعال', default=False)
 
 
+    @property
+    def final_price(self):
+        """Calculate the final price of product with discount"""
+        final_price = self.price * (100 - self.discount) / 100
+        return final_price
+
+    @property
+    def is_available(self):
+        """Returns True if the product is available"""
+        if self.availlable_count > 0:
+            return True
+        return False
+
+
     class Meta:
         abstract = True
 
