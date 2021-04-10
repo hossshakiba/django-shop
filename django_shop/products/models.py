@@ -1,8 +1,12 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 class Product(models.Model):
     """
     Abstract product model contains common fields among all products
+    TODO:
+        - cateogries
+        - gallery
     """
     title = models.CharField('عنوان محصول', max_length=50)
     description = models.TextField('توضیحات')
@@ -10,8 +14,19 @@ class Product(models.Model):
     price = models.PositiveIntegerField('قیمت')
     discount_percent = models.PositiveSmallIntegerField('درصد تخفیف', blank=True, default=0)
     available_count = models.PositiveSmallIntegerField('موجودی انبار')
+    technical_details = models.JSONField('مشخصات فنی')
+    attributes = ArrayField(
+        'امکانات محصول',
+        models.CharField(max_length=100, blank=True),
+        blank = True, null = True)
     is_active = models.BooleanField('فعال/غیرفعال', default=False)
 
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
 
     @property
     def final_price(self):
@@ -25,12 +40,4 @@ class Product(models.Model):
         if self.availlable_count > 0:
             return True
         return False
-
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.title
-
 
